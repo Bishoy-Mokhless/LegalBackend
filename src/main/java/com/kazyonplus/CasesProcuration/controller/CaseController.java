@@ -16,6 +16,11 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"} ,
+        methods = {RequestMethod.GET,RequestMethod.DELETE,
+                RequestMethod.PUT,RequestMethod.HEAD,RequestMethod.OPTIONS,
+                RequestMethod.POST},
+        allowedHeaders = {"*"})
 @RequestMapping("/case")
 public class CaseController {
 

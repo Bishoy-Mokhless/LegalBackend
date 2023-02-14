@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	UserDetailsService userDetailsService;
 
 
-    @Bean
+	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 
@@ -62,9 +62,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/contract/**").hasAnyRole("CONTRACT","SUPER")
 				.antMatchers(HttpMethod.GET,"/branch/**").hasAnyRole("BRANCH","SUPER")
 				.antMatchers(HttpMethod.GET,"/license/**").hasAnyRole("LICENSE","SUPER")
+				.antMatchers(HttpMethod.GET,"/attachment/**").hasAnyRole("SUPER")
 
 
-				//.antMatchers(HttpMethod.GET,"/v1/users/{userId}").access("@userSecurity.hasUserId(authentication,#userId)")
+		//.antMatchers(HttpMethod.GET,"/v1/users/{userId}").access("@userSecurity.hasUserId(authentication,#userId)")
 		;
 
 

@@ -14,7 +14,11 @@ import java.util.List;
 import static org.springframework.http.ResponseEntity.*;
 
 @RestController
-@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"})
+@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"} ,
+        methods = {RequestMethod.GET,RequestMethod.DELETE,
+                RequestMethod.PUT,RequestMethod.HEAD,RequestMethod.OPTIONS,
+                RequestMethod.POST},
+        allowedHeaders = {"*"})
 @RequestMapping("/session")
 public class SessionController {
     private final SessionService sessionService ;

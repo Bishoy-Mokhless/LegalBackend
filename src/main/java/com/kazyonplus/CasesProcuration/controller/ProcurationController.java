@@ -24,7 +24,11 @@ import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
 
 @RestController
-@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"})
+@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"} ,
+        methods = {RequestMethod.GET,RequestMethod.DELETE,
+                RequestMethod.PUT,RequestMethod.HEAD,RequestMethod.OPTIONS,
+                RequestMethod.POST},
+        allowedHeaders = {"*"})
 @RequestMapping("/procuration")
 public class ProcurationController {
     @Autowired

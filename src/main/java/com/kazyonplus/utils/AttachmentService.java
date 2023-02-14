@@ -45,10 +45,10 @@ import static java.lang.String.valueOf;
 
 @Service
 public class AttachmentService {
-    //private final File fileToRead = new File("/home/" + System.getProperty("user.name") + "/uploads");
-    //private final Path root = fileToRead.toPath();
+    private final File fileToRead = new File("D:\\uploads");
+    private final Path root = fileToRead.toPath();
 
-    private final Path root = Paths.get("C:\\Users\\Perry\\Documents\\Kazyon\\uploads");
+    //private final Path root = Paths.get("C:\\Users\\Perry\\Documents\\Kazyon\\uploads");
 
     @Autowired
     ResourceLoader resourceLoader;
@@ -76,7 +76,7 @@ public class AttachmentService {
         try {
             Files.createDirectory(root);
             for(SystemType type: SystemType.values()) {
-                Files.createDirectory(of(root + "/" + type));
+                Files.createDirectory(  of(root + "/" + type));
                 Files.createDirectory(of(root + "/" + type + "/temp"));
             }
         } catch (IOException e) {

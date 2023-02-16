@@ -60,8 +60,8 @@ public class ProcurationController {
         return ok(procurationService.searchProcurationsByName(name));
     }
     //test
-    @PutMapping("/update/{id}")
-    public ResponseEntity<HttpStatus> updateProcuration(@RequestBody ProcurationDTO dto, @PathVariable Long id){
+    @PostMapping("/update/{id}")
+    public ResponseEntity<HttpStatus> updateProcuration( @PathVariable("id") long id,@RequestBody ProcurationDTO dto){
         procurationService.updateProcuration(dto, id);
         return new ResponseEntity<>(OK);
     }

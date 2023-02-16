@@ -43,8 +43,8 @@ public class SessionController {
     }
 
     @PostMapping(value = "/edit/{id}")
-    public ResponseEntity<SessionRequest> editSessionById(@PathVariable final Long id,
-                                                          @RequestBody final SessionRequest sessionRequest) {
+    public ResponseEntity<SessionRequest> editSessionById(@PathVariable  Long id,
+                                                          @RequestBody  SessionRequest sessionRequest) {
         Session editSession = sessionService.editSesssionByID(id, Session.from(sessionRequest));
         return new ResponseEntity<>(SessionRequest.from(editSession), HttpStatus.OK);
     }

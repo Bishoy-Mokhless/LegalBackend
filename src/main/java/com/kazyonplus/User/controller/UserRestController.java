@@ -40,7 +40,7 @@ public class UserRestController {
 	@Autowired
 	private final PasswordEncoder passwordEncoder;
 
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')or hasRole('ROLE_CONTRACT')or hasRole('ROLE_SUPER') or hasRole('Role_LICENSE')")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')or hasRole('ROLE_CONTRACT')or hasRole('ROLE_SUPER') or hasRole('Role_LICENSE') or hasRole('Role_PROCURATION')or hasRole('Role_CASE')")
 	@GetMapping("/users")
 	public List<User> getAllUsers(Authentication authentication) {
 

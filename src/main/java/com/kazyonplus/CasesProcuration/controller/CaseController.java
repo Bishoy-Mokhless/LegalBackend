@@ -64,9 +64,9 @@ public class CaseController {
         return new ResponseEntity<>(CaseRequest.from(mycase), OK);
     }
     //tested
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<CaseRequest> EditCaseByID(@PathVariable final Long id,
-                                                    @RequestBody final CaseRequest caseDTO){
+    @PostMapping(value = "/{id}")
+    public ResponseEntity<CaseRequest> EditCaseByID(@PathVariable  long id,
+                                                    @RequestBody  CaseRequest caseDTO){
         Case mycase = caseService.editCase(id, Case.from(caseDTO));
         return new ResponseEntity<>(CaseRequest.from(mycase), OK);
     }

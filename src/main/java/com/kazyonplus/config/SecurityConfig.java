@@ -54,12 +54,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 		http.cors().and()
-				.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST).hasAnyRole("ADMIN","MANAGER","CONTRACT","BRANCH","SUPER","LICENSE")
+				.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST).hasAnyRole("ADMIN","MANAGER","CONTRACT","BRANCH","SUPER","LICENSE","PROCURATION","CASE")
 				.antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN", "MANAGER")
 				.antMatchers(HttpMethod.DELETE).hasAnyRole("MANAGER")
 				.antMatchers(HttpMethod.GET, "/v1/validate").hasRole("SUPER")
 				.antMatchers(HttpMethod.GET, "/v1/users/**").hasAnyRole("ADMIN", "MANAGER", "CONTRACT","SUPER")
 				.antMatchers("/contract/**").hasAnyRole("CONTRACT","SUPER")
+				.antMatchers("/procuration/**").hasAnyRole("PROCURATION","SUPER")
+				.antMatchers(HttpMethod.PUT,"/procuration/update/**").hasAnyRole("PROCURATION","SUPER")
+				.antMatchers("/case/**").hasAnyRole("CASE","SUPER")
+				.antMatchers("/session/**").hasAnyRole("CASE","SUPER")
 				.antMatchers(HttpMethod.GET,"/branch/**").hasAnyRole("BRANCH","SUPER")
 				.antMatchers(HttpMethod.GET,"/license/**").hasAnyRole("LICENSE","SUPER")
 				.antMatchers(HttpMethod.GET,"/attachment/**").hasAnyRole("SUPER")

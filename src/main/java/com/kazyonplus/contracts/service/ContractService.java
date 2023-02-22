@@ -30,16 +30,16 @@ public class ContractService {
     @Autowired
     DocRepository docRepository;
     public ContractResponse create(ContractCreationRequest creationRequest){
-        if (creationRequest.getEndDate().before(creationRequest.getValidThroughDate()))
+        /*if (creationRequest.getEndDate().before(creationRequest.getValidThroughDate()))
         {
             return (ContractResponse) ResponseEntity.status(404);
-        }
-        else
-        {
+        }*/
+        //else
+        //{
             Contract contract = mapper.map(creationRequest, Contract.class);
             contractRepository.save(contract);
             return mapper.map(contract, ContractResponse.class);
-        }
+        //}
     }
     public List<Contract> listAll() {
         return contractRepository.findAll();

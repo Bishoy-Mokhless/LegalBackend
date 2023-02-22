@@ -4,12 +4,19 @@ import com.kazyonplus.CasesProcuration.model.Case;
 import com.kazyonplus.CasesProcuration.model.Session;
 import com.kazyonplus.CasesProcuration.model.request.exception.CaseNotFoundException;
 import com.kazyonplus.CasesProcuration.repository.CaseRepository;
+import com.kazyonplus.contracts.model.Contract;
+import com.kazyonplus.contracts.model.ContractResponse;
+import com.kazyonplus.files.controller.DocController;
+import com.kazyonplus.files.model.Doc;
+import com.kazyonplus.files.repository.DocRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -24,7 +31,10 @@ public class CaseService {
     private CaseRepository caseRepository;
     @Autowired
     private SessionService sessionService;
-
+    @Autowired
+    DocController docController;
+    @Autowired
+    DocRepository docRepository;
     public Case addCase(Case mycase){
         return caseRepository.save(mycase);
     }
@@ -83,5 +93,19 @@ public class CaseService {
     public List<Case> getCaseByName(String name) {
         return caseRepository.findByName(name) ;
     }
+    public String addFile(long caseId, MultipartFile file) throws IOException {
+        String docname = file.getOriginalFilename();
+
+        Doc doc = new Doc(docname,file.getContentType(),file.getBytes());
+        docRepository.save(doc);
+
+        Case _case = caseRepository.getById(caseId);
+
+        _case.setAttachment(doc);
+        _case.setHasAttachment(true);
+        caseRepository.save(_case);
+        return "done";
+    }
+
 }
 

@@ -1,16 +1,12 @@
 package com.kazyonplus.contracts.model;
 
+import com.kazyonplus.files.model.Doc;
 import lombok.Data;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -30,6 +26,10 @@ public class Contract {
 
     @Column(name = "store_code", unique = true)
     private Long storeCode;
+
+    @OneToOne
+    private Doc attachment;
+
 
     @Column(name = "sap_code")
     private String sapCode;
@@ -82,4 +82,12 @@ public class Contract {
 
     @Column(name = "has_attachment")
     private Boolean hasAttachment = false;
+
+    public Doc getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Doc attachment) {
+        this.attachment = attachment;
+    }
 }

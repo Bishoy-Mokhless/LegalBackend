@@ -1,6 +1,7 @@
 package com.kazyonplus.CasesProcuration.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.kazyonplus.files.model.Doc;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,6 +17,10 @@ public class Procuration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String client_name;
+
+    @OneToOne
+    private Doc attachment;
+
     private int office_procuration_number;
     private String office;
     private int procuration_number;
@@ -76,5 +81,13 @@ public class Procuration {
 
     public void setYear(Date year) {
         this.year = year;
+    }
+
+    public Doc getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Doc attachment) {
+        this.attachment = attachment;
     }
 }

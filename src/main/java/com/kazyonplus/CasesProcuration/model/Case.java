@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kazyonplus.CasesProcuration.model.request.CaseRequest;
 import com.kazyonplus.CasesProcuration.model.request.SessionRequest;
 
+import com.kazyonplus.files.model.Doc;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -35,6 +36,8 @@ public class Case {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "case_id")
     private List<Session> Sessions;
+    @OneToOne
+    private Doc attachment;
 
 
     public void addSession(Session session){

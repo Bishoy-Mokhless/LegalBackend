@@ -11,17 +11,20 @@ public class Doc {
 	
 	private String docName;
 	private String docType;
-	
+	/*private String category;
+	private long categoryId;*/
 	@Lob
 	private byte[] data;
 	
 	public Doc() {}
 
-	public Doc(String docName, String docType, byte[] data) {
+	public Doc(String docName, String docType, byte[] data/*,String category, long categoryId*/) {
 		super();
 		this.docName = docName;
 		this.docType = docType;
 		this.data = data;
+		/*this.category = category;
+		this.categoryId = categoryId;*/
 	}
 
 	public Integer getId() {
@@ -56,4 +59,19 @@ public class Doc {
 		this.data = data;
 	}
 
+	/*public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
+	}*/
 }

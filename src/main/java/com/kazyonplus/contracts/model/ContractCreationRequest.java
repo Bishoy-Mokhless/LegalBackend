@@ -29,7 +29,7 @@ public class ContractCreationRequest {
     private Date validThroughDate;
 
     @JsonFormat(pattern="yyyy/MM/dd")
-    @JsonProperty("renewal_date")
+    @JsonProperty(value = "renewal_date")
     private Date renewalDate;
 
     @JsonFormat(pattern="yyyy/MM/dd")

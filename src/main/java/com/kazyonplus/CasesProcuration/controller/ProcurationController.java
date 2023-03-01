@@ -33,7 +33,8 @@ import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
 
 @RestController
-@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"} ,
+@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"
+        , "http://localhost:80","http://localhost"} ,
         methods = {RequestMethod.GET,RequestMethod.DELETE,
                 RequestMethod.PUT,RequestMethod.HEAD,RequestMethod.OPTIONS,
                 RequestMethod.POST},
@@ -84,8 +85,9 @@ public class ProcurationController {
         procurationService.deleteProcuration(id);
         return new ResponseEntity<>(OK);
     }
-    @PostMapping("/addFile")
-    public ResponseEntity<String> updateContractFile(/*@PathVariable("id") long id,*/ @RequestParam("files") MultipartFile files ,@RequestParam("id") long id) throws IOException {
+    @RequestMapping(value = "/addFile/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    //@PostMapping("/addFile")
+    public ResponseEntity<String> updateContractFile(@PathVariable("id") long id, @RequestParam("files") MultipartFile files ) throws IOException {
 
         return status(OK).body(procurationService.addFile(id,files));
     }
@@ -94,7 +96,7 @@ public class ProcurationController {
         Procuration procuration =procurationRepository.getById((long) id);
         int idd = procuration.getAttachment().getId();
         Doc doc = docRepository.getById(idd);
-//get file from repo
+
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(doc.getDocType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getDocName()+"\"")

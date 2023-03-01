@@ -24,7 +24,8 @@ import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"} ,
+@CrossOrigin(origins ={"http://localhost:4200/", "https://legalsystem.netlify.app/"
+        , "http://localhost:80","http://localhost"} ,
         methods = {RequestMethod.GET,RequestMethod.DELETE,
                 RequestMethod.PUT,RequestMethod.HEAD,RequestMethod.OPTIONS,
                 RequestMethod.POST},

@@ -30,10 +30,12 @@ public class KazyonLmsApplication {
 	@Bean
 	public WebMvcConfigurer corsConfigurer()
 	{
-		String[] allowDomains = new String[3];
+		String[] allowDomains = new String[5];
 		allowDomains[0] = "http://localhost:4200";
 		allowDomains[1] = "http://localhost:8080";
-		allowDomains[2]="https://legalsystem.netlify.app/";
+		allowDomains[2]=  "https://legalsystem.netlify.app/";
+		allowDomains[3]=  "http://localhost:80";
+		allowDomains[4]=  "http://localhost";
 
 		System.out.println("CORS configuration....");
 		return new WebMvcConfigurer() {

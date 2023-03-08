@@ -6,6 +6,7 @@ import com.kazyonplus.CasesProcuration.model.Case;
 import com.kazyonplus.CasesProcuration.model.Procuration;
 import com.kazyonplus.CasesProcuration.model.ProcurationDTO;
 import com.kazyonplus.CasesProcuration.repository.ProcurationRepository;
+import com.kazyonplus.contracts.model.Contract;
 import com.kazyonplus.files.controller.DocController;
 import com.kazyonplus.files.model.Doc;
 import com.kazyonplus.files.repository.DocRepository;
@@ -77,10 +78,10 @@ public class ProcurationService {
         docRepository.save(doc);
 
         Procuration procuration = procurationRepository.getById(procId);
-
         procuration.setAttachment(doc);
         procuration.setHasAttachment(true);
         procurationRepository.save(procuration);
+
         return "done";
     }
 }

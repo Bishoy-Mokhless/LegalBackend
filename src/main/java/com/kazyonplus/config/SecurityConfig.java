@@ -59,14 +59,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.DELETE).hasAnyRole("MANAGER")
 				.antMatchers(HttpMethod.GET, "/v1/validate").hasRole("SUPER")
 				.antMatchers(HttpMethod.GET, "/v1/users/**").hasAnyRole("ADMIN", "MANAGER", "CONTRACT","SUPER")
-				.antMatchers("/contract/**").hasAnyRole("CONTRACT","SUPER")
-				.antMatchers("/procuration/**").hasAnyRole("PROCURATION","SUPER")
-				.antMatchers(HttpMethod.PUT,"/procuration/update/**").hasAnyRole("PROCURATION","SUPER")
-				.antMatchers("/case/**").hasAnyRole("CASE","SUPER")
+				/**CONTRACT**/
+
+				.antMatchers("/contract/all").hasAnyRole("CONTRACT","SUPER")
+				.antMatchers("/contract/store-codes").hasAnyRole("CONTRACT","SUPER")
+				.antMatchers("/contract/filter").hasAnyRole("CONTRACT","SUPER")
+				.antMatchers("/contract/status").hasAnyRole("CONTRACT","SUPER")
+				.antMatchers("/contract/del").hasAnyRole("CONTRACT","SUPER")
+				.antMatchers("/contract/downloadFile/**").permitAll()
+				/**PROCURTION**/
+
+				.antMatchers("/procuration/add").hasAnyRole("PROCURATION","SUPER")
+				.antMatchers("/procuration/view/**").hasAnyRole("PROCURATION","SUPER")
+				.antMatchers("/procuration/getall").hasAnyRole("PROCURATION","SUPER")
+				.antMatchers("/procuration/search").hasAnyRole("PROCURATION","SUPER")
+				.antMatchers("/procuration/update/**").hasAnyRole("PROCURATION","SUPER")
+				.antMatchers("/procuration/delete/**").hasAnyRole("PROCURATION","SUPER")
+				.antMatchers("/procuration/addFile/**").permitAll()
+				.antMatchers("/procuration/downloadFile/**").permitAll()
+				/***********************/
+				/**CASE**/
+				.antMatchers("/case").hasAnyRole("CASE","SUPER")
+				.antMatchers("/case/downloadFile/**").permitAll()
+				.antMatchers("/case/addFile/**").permitAll()
+
+				/*******/
 				.antMatchers("/session/**").hasAnyRole("CASE","SUPER")
 				.antMatchers(HttpMethod.GET,"/branch/**").hasAnyRole("BRANCH","SUPER")
 				.antMatchers(HttpMethod.GET,"/license/**").hasAnyRole("LICENSE","SUPER")
 				.antMatchers(HttpMethod.GET,"/attachment/**").hasAnyRole("SUPER")
+
 
 
 		//.antMatchers(HttpMethod.GET,"/v1/users/{userId}").access("@userSecurity.hasUserId(authentication,#userId)")

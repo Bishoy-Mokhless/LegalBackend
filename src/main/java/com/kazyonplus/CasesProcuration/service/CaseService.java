@@ -100,10 +100,10 @@ public class CaseService {
         docRepository.save(doc);
 
         Case _case = caseRepository.getById(caseId);
-
         _case.setAttachment(doc);
         _case.setHasAttachment(true);
         caseRepository.save(_case);
+
         return "done";
     }
 

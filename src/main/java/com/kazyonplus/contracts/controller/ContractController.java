@@ -106,7 +106,7 @@ public class ContractController {
 //get file from repo
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(doc.getDocType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getDocName()+"\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=newfile.pdf")
                 .body(new ByteArrayResource(doc.getData()));
     }
 

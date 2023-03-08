@@ -89,6 +89,7 @@ public class ProcurationController {
     //@PostMapping("/addFile")
     public ResponseEntity<String> updateContractFile(@PathVariable("id") long id, @RequestParam("files") MultipartFile files ) throws IOException {
 
+
         return status(OK).body(procurationService.addFile(id,files));
     }
     @GetMapping("/downloadFile/{id}")
@@ -99,7 +100,7 @@ public class ProcurationController {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(doc.getDocType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getDocName()+"\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=newfile.pdf")
                 .body(new ByteArrayResource(doc.getData()));
     }
 }
